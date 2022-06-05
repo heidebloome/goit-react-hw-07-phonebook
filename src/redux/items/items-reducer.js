@@ -1,8 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './items-actions';
-import INITIAL_STATE from '../../data/initial-state.json';
 
-export const itemsReducer = createReducer([...INITIAL_STATE], {
+export const itemsReducer = createReducer([], {
   [actions.addContact]: (state, { payload }) => {
     return [...state, payload];
   },

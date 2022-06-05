@@ -9,7 +9,7 @@ export const Item = styled.li`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 150px;
+  width: 200px;
 `;
 
 export const Text = styled.span`
