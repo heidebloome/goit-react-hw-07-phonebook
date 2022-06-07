@@ -2,7 +2,7 @@ import { Label, Input } from '../common';
 
 const Filter = ({ setFilter }) => {
   const onChange = e => {
-    setFilter(e.target.value);
+    setFilter(e.target.value.trim());
   };
   return (
     <Label>

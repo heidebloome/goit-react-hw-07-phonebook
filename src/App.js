@@ -6,8 +6,8 @@ import ContactList from './components/ContactList/ContactList';
 import Filter from './components/Filter/Filter';
 
 export default function App() {
+  // We don't need a filter value in Redux store
   const [filter, setFilter] = useState('');
-  console.log(filter);
 
   return (
     <>

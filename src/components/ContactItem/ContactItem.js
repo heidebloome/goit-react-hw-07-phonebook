@@ -1,16 +1,14 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import * as actions from '../../redux/items/items-actions';
+import { useDeleteContactMutation } from '../../services/contactsApi';
 import propTypes from 'prop-types';
 import toast from 'react-hot-toast';
 import { Button } from '../common';
 import { Item, Wrapper, Text } from './ContactItem.styled';
 
 const ContactItem = ({ id, contactName, contactNumber }) => {
-  const dispatch = useDispatch();
+  const [deleteContact] = useDeleteContactMutation();
 
   const onContactDelete = (id, contactName) => {
-    dispatch(actions.deleteContact(id));
+    deleteContact(id);
     toast.error(`${contactName} was deleted from your contacts!`);
   };
 

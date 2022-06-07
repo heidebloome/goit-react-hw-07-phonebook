@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import * as actions from '../../redux/items/items-actions';
-import { getItems } from '../../redux/items/items-selectors';
+import { useAddContactMutation } from '../../services/contactsApi';
+import { useFetchContactsQuery } from '../../services/contactsApi';
 import toast from 'react-hot-toast';
 import { Button, Label, Input } from '../common';
 import { Form } from './ContactForm.styled';
 
 export default function ContactForm() {
-  const items = useSelector(getItems);
-  const dispatch = useDispatch();
   const [contactName, setContactName] = useState('');
   const [contactNumber, setContactNumber] = useState('');
+
+  const { data: contacts } = useFetchContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const onChange = e => {
     e.target.name === 'contactName'
@@ -22,15 +22,15 @@ export default function ContactForm() {
     e.preventDefault();
 
     const normalizedContactName = contactName.toLowerCase();
-    const savedContactName = items.some(
-      item => item.contactName.toLowerCase() === normalizedContactName,
+    const savedContactName = contacts.some(
+      item => item.name.toLowerCase() === normalizedContactName,
     );
     if (savedContactName) {
       toast.error(`${contactName} is already in contacts!`);
       return;
     }
 
-    dispatch(actions.addContact(contactName, contactNumber));
+    addContact({ name: contactName, phone: contactNumber });
     toast.success(`${contactName} was added to your contacts!`);
 
     resetState();
