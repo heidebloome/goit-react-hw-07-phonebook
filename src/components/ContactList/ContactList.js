@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import { useFetchContactsQuery } from '../../services/contactsApi';
 import ContactItem from '../ContactItem/ContactItem';
 import { List } from './ContactList.styled';
@@ -29,6 +30,10 @@ const ContactList = ({ filter }) => {
       )}
     </>
   );
+};
+
+ContactList.propTypes = {
+  filter: propTypes.string.isRequired,
 };
 
 export default ContactList;

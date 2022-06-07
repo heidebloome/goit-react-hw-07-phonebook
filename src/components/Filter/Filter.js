@@ -1,3 +1,4 @@
+import propTypes from 'prop-types';
 import { Label, Input } from '../common';
 
 const Filter = ({ setFilter }) => {
@@ -10,6 +11,10 @@ const Filter = ({ setFilter }) => {
       <Input type="text" onChange={onChange}></Input>
     </Label>
   );
+};
+
+Filter.propTypes = {
+  setFilter: propTypes.func.isRequired,
 };
 
 export default Filter;

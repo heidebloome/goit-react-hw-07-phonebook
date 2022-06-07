@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { useAddContactMutation } from '../../services/contactsApi';
-import { useFetchContactsQuery } from '../../services/contactsApi';
+import {
+  useAddContactMutation,
+  useFetchContactsQuery,
+} from '../../services/contactsApi';
 import toast from 'react-hot-toast';
 import { Button, Label, Input } from '../common';
 import { Form } from './ContactForm.styled';
@@ -16,6 +18,11 @@ export default function ContactForm() {
     e.target.name === 'contactName'
       ? setContactName(e.target.value)
       : setContactNumber(e.target.value);
+  };
+
+  const resetState = () => {
+    setContactName('');
+    setContactNumber('');
   };
 
   const onSubmit = e => {
@@ -34,11 +41,6 @@ export default function ContactForm() {
     toast.success(`${contactName} was added to your contacts!`);
 
     resetState();
-  };
-
-  const resetState = () => {
-    setContactName('');
-    setContactNumber('');
   };
 
   return (
